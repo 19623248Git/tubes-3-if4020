@@ -18,7 +18,7 @@ if [ "$GITHUB_REF_TYPE" = "tag" ]; then
   tag="$GITHUB_REF_NAME"
   kind="release"
 else
-  tag="$sha-$(echo "$GITHUB_SHA" | cut -c 1-7)"
+  tag="sha-$(echo "$GITHUB_SHA" | cut -c 1-7)"
   kind="development"
 fi
 
