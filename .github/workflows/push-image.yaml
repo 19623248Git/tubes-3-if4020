@@ -1,0 +1,26 @@
+name: push image
+ 
+on:
+  push:
+    branches: [master]
+    paths:
+      - "signer/**"
+      - "ci/push-image.sh"
+      - ".github/workflows/push-image.yml"
+    tags: ["v*"]
+ 
+permissions:
+  contents: read
+  packages: write
+ 
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+ 
+      - name: build and push image
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: sh ci/publish-image.sh
