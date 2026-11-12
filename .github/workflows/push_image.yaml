@@ -6,7 +6,7 @@ on:
     paths:
       - "signer/**"
       - "ci/push-image.sh"
-      - ".github/workflows/push-image.yml"
+      - ".github/workflows/push_image.yml"
     tags: ["v*"]
  
 permissions:
@@ -23,4 +23,4 @@ jobs:
       - name: build and push image
         env:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: sh ci/push-image.sh
+        run: sh ci/push_image.sh
