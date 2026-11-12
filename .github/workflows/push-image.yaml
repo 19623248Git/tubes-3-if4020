@@ -23,4 +23,4 @@ jobs:
       - name: build and push image
         env:
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: sh ci/publish-image.sh
+        run: sh ci/push-image.sh
