@@ -1,7 +1,7 @@
 import argparse
 from importlib.metadata import PackageNotFoundError, version as package_version
 
-from signer.subcommands import keygen
+from signer.subcommands import keygen, sign as sign_cmd
 
 prog = "xaleidscopix"
 package = "signer"
@@ -18,7 +18,7 @@ def call_keygen(args):
     raise SystemExit(keygen.run(args))
 
 def call_sign(args):
-    print("calling sign")
+    raise SystemExit(sign_cmd.run(args))
 
 def call_verify(args):
     print("calling verify")

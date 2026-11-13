@@ -1,9 +1,10 @@
-import hashlib
 import os
 import sys
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import ec, ed25519, rsa
+
+from signer.subcommands.common import ECDSA_P256_SHA256, ED25519, RSA_PSS_SHA256, fingerprint
 
 
 def generate_rsa_key():
@@ -33,14 +34,6 @@ def public_key_pem(public_key) -> bytes:
     )
 
 
-def fingerprint(public_key) -> str:
-    der = public_key.public_bytes(
-        encoding=serialization.Encoding.DER,
-        format=serialization.PublicFormat.SubjectPublicKeyInfo,
-    )
-    return hashlib.sha256(der).hexdigest()
-
-
 def write_file(path: str, data: bytes, overwrite: bool, private: bool) -> None:
     flags = os.O_WRONLY | os.O_CREAT | (os.O_TRUNC if overwrite else os.O_EXCL)
     mode = 0o600 if private else 0o644
@@ -50,11 +43,11 @@ def write_file(path: str, data: bytes, overwrite: bool, private: bool) -> None:
 
 
 def run(args) -> int:
-    if args.algorithm == "rsa-pss-sha256":
+    if args.algorithm == RSA_PSS_SHA256:
         key = generate_rsa_key()
-    elif args.algorithm == "ecdsa-p256-sha256":
+    elif args.algorithm == ECDSA_P256_SHA256:
         key = generate_ecdsa_key()
-    elif args.algorithm == "ed25519":
+    elif args.algorithm == ED25519:
         key = generate_ed25519_key()
     else:
         print(f"error: unsupported algorithm {args.algorithm}", file=sys.stderr)
