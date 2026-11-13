@@ -1,7 +1,8 @@
 import argparse
+import json
+import sys
 from importlib.metadata import PackageNotFoundError, version as package_version
-
-from signer.subcommands import keygen, sign as sign_cmd, trust as trust_cmd
+from signer.subcommands import keygen, sign as sign_cmd, trust as trust_cmd, verify as verify_cmd
 
 prog = "xaleidscopix"
 package = "signer"
@@ -21,7 +22,7 @@ def call_sign(args):
     raise SystemExit(sign_cmd.run(args))
 
 def call_verify(args):
-    print("calling verify")
+    raise SystemExit(verify_cmd.run(args))
 
 def call_trust_add(args):
     raise SystemExit(trust_cmd.run(args))
@@ -80,7 +81,13 @@ def main():
     trust_remove.add_argument("--store", required=True, metavar="<trust.json>")
     trust_remove.set_defaults(func=call_trust_remove)
 
-    args = parser.parse_args()
+    try:
+        args = parser.parse_args()
+    except SystemExit as error:
+        if error.code == 2 and sys.argv[1:2] == ["verify"] and "--json" in sys.argv[2:]:
+            result = verify_cmd.verification_result("INPUT_ERROR", "invalid command-line arguments; see stderr for details")
+            print(json.dumps(result))
+        raise
     args.func(args)
 
 if __name__ == "__main__":
