@@ -30,12 +30,14 @@ def serialize_manifest(
     name: str,
     size: int,
     sha256: str,
+    *,
+    check_algorithm: bool = True,
 ) -> bytes:
     if not PACKAGE_RE.fullmatch(package):
         raise ValueError(f"invalid package name: {package!r}")
     if not VERSION_RE.fullmatch(version):
         raise ValueError(f"invalid version: {version!r}")
-    if algorithm not in PROFILES:
+    if check_algorithm and algorithm not in PROFILES:
         raise ValueError(f"unsupported algorithm: {algorithm!r}")
     if not HEX64_RE.fullmatch(keyid):
         raise ValueError(f"invalid keyid: {keyid!r}")
