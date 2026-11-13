@@ -7,7 +7,9 @@ authors = [
     { name = "19623248Git", email = "13523032@std.stei.itb.ac.id" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "cryptography>=50.0.2",
+]
 
 [project.scripts]
 signer = "signer:main"

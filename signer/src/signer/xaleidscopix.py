@@ -1,6 +1,8 @@
 import argparse
 from importlib.metadata import PackageNotFoundError, version as package_version
 
+from signer.subcommands import keygen
+
 prog = "xaleidscopix"
 package = "signer"
 profil = ("rsa-pss-sha256", "ecdsa-p256-sha256", "ed25519")
@@ -13,7 +15,7 @@ def program_version() -> str:
 
 
 def call_keygen(args):
-    print("calling keygen")
+    raise SystemExit(keygen.run(args))
 
 def call_sign(args):
     print("calling sign")
