@@ -1,7 +1,7 @@
 import argparse
 from importlib.metadata import PackageNotFoundError, version as package_version
 
-from signer.subcommands import keygen, sign as sign_cmd
+from signer.subcommands import keygen, sign as sign_cmd, trust as trust_cmd
 
 prog = "xaleidscopix"
 package = "signer"
@@ -24,13 +24,13 @@ def call_verify(args):
     print("calling verify")
 
 def call_trust_add(args):
-    print("calling trust add")
+    raise SystemExit(trust_cmd.run(args))
 
 def call_trust_list(args):
-    print("calling trust list")
+    raise SystemExit(trust_cmd.run(args))
 
 def call_trust_remove(args):
-    print("calling trust remove")
+    raise SystemExit(trust_cmd.run(args))
 
 def main():
     
