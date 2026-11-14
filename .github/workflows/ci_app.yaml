@@ -1,0 +1,136 @@
+name: ci app
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "app/**"
+      - "ci/**"
+      - "!ci/push-image.sh"
+      - ".github/workflows/ci_app.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  IMAGE: ghcr.io/19623248git/tubes-3-if4020@sha256:fe29cca27db9a83eaf35a9aaceafec76765a4cc0041c3b28496ad59d6955679d
+  PACKAGE: zig-fork-app
+  VERSION: 1.0.0
+
+jobs:
+  build:
+    name: build artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: build artifact to /dist
+        run: sh ci/build.sh
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: artifact
+          path: dist/
+          if-no-files-found: error
+
+  sign:
+    name: sign (${{ matrix.algorithm }})
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - algorithm: ed25519
+            key_secret: SIGNING_KEY_ED25519
+          - algorithm: ecdsa-p256-sha256
+            key_secret: SIGNING_KEY_ECDSA_P256
+          - algorithm: rsa-pss-sha256
+            key_secret: SIGNING_KEY_RSA_PSS
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: get artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: artifact
+          path: dist/
+
+      - name: Sign (private key comes from the CI secret)
+        env:
+          SIGNING_KEY_PEM: ${{ secrets[matrix.key_secret] }}
+        run: sh ci/sign.sh
+
+      - name: Hand the bundle to verify
+        uses: actions/upload-artifact@v7
+        with:
+          name: bundle-${{ matrix.algorithm }}
+          path: out/rilis.json
+          if-no-files-found: error
+
+  verify:
+    name: verify (${{ matrix.algorithm }})
+    needs: sign
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        algorithm: [ed25519, ecdsa-p256-sha256, rsa-pss-sha256]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: get artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: artifact
+          path: dist/
+
+      - name: get bundle
+        uses: actions/download-artifact@v8
+        with:
+          name: bundle-${{ matrix.algorithm }}
+          path: out/
+
+      - name: verify
+        run: sh ci/verify.sh
+
+      - name: store verify result
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-${{ matrix.algorithm }}
+          path: out/verification.json
+          if-no-files-found: warn
+
+  deploy:
+    name: deploy (${{ matrix.algorithm }})
+    needs: verify
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        algorithm: [ed25519, ecdsa-p256-sha256, rsa-pss-sha256]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: Get the verified artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: artifact
+          path: dist/
+
+      - name: Deploy
+        run: sh ci/deploy.sh
+
+      - name: store deploy marker
+        uses: actions/upload-artifact@v7
+        with:
+          name: deployed-${{ matrix.algorithm }}
+          path: out/deployed.marker
+          if-no-files-found: error
