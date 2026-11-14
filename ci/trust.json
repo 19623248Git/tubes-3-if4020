@@ -1,0 +1,29 @@
+{
+  "schema": "xaleidscopix-trust/v1",
+  "keys": [
+    {
+      "keyid": "3b0193088d56beff5dfb97b48fec407785e2e67924510ee98f583f24b052f8d2",
+      "algorithm": "ed25519",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEApglGM5rYHm2euX+8eVs5y0p8q3qCJW4Tk6DxTXLpL8g=\n-----END PUBLIC KEY-----\n",
+      "packages": [
+        "zig-fork-app"
+      ]
+    },
+    {
+      "keyid": "0c9750711f004c0d0761423c22866b8b2f20451c55b42d2a95208661650876dc",
+      "algorithm": "ecdsa-p256-sha256",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAECtUBWwycj0ItUUNd9WOT6JEXxpa0\nOPCdMUrGnfkLVr3bXQmFmUfbTCt8ltP0VBOy4MrFbhyYL0Du4t4ibue2bQ==\n-----END PUBLIC KEY-----\n",
+      "packages": [
+        "zig-fork-app"
+      ]
+    },
+    {
+      "keyid": "bc32cb4ce061112d1800bb210f4b270ccdd4295cca680e3a883f8d5fbccde46a",
+      "algorithm": "rsa-pss-sha256",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA5l1Vho+FreDdtOsd7zX/\nhuup1E4CkLLX4x5mMoMkyykRJSfNCgSY0iaouRYnSF9OIsEbHHvW85Na+r9BSWfK\n+3NUEa7rCH1JPwqnO6DlNLCQEDlqIv7+8yQ9mTPJahePMsCujKDuts4yQ/tqERD5\ncwcP2KwhrP5GUHTbIK+k18qryF8lKnFgE/EyWX+Sh5Qh719AhkPca6NW3tdWfvib\nOMKqYZYm41yd/X9TleigXf+/mUtf6xb98N9vEHY3gp6/eaVtgsdv3uggRInfkr3l\nxW9qo1d6z3sKnXsW2XnLLELlYKPwtrnDYfZg8e+m8lwW8iOt4t2VquEo5rSBAhz5\nN95mhMroDRNiRwN0I6GiQf4Zlen8ct5dZpeGUGs0a3YN6S8rl7iW4it5K69P6GsB\ns9GXNmuB2yjJz9Vmq1GH051RnrbQpjxoXzi+Ai2qzPYiSgNtCOfnMuoiie2OuA/i\n1Zcj1E7lQbpD4VsEn2w2PuyWnMgBX0patOTRyAHSHg21AgMBAAE=\n-----END PUBLIC KEY-----\n",
+      "packages": [
+        "zig-fork-app"
+      ]
+    }
+  ]
+}
