@@ -10,8 +10,8 @@ ECDSA_P256_SHA256 = "ecdsa-p256-sha256"
 ED25519 = "ed25519"
 PROFILES = (RSA_PSS_SHA256, ECDSA_P256_SHA256, ED25519)
 
-MANIFEST_SCHEMA = "minisign-manifest/v1"
-BUNDLE_SCHEMA = "minisign-bundle/v1"
+MANIFEST_SCHEMA = "xaleidscopix-manifest/v1"
+BUNDLE_SCHEMA = "xaleidscopix-bundle/v1"
 MAX_MANIFEST_BYTES = 16 * 1024
 MAX_BUNDLE_BYTES = 64 * 1024
 MAX_SAFE_INT = 2**53 - 1
