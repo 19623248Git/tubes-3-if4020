@@ -8,7 +8,7 @@ from signer.subcommands.common import (
     MAX_MANIFEST_BYTES, PACKAGE_RE, detect_profile, fingerprint, serialize_manifest,
 )
 
-TRUST_SCHEMA = "xaleidscopix-trust/v1"
+TRUST_SCHEMA = "minisign-trust/v1"
 
 class FormatError(ValueError):
     pass
