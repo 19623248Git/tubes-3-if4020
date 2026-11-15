@@ -1,0 +1,269 @@
+name: c0x scenarios
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "app/**"
+      - "ci/**"
+      - "!ci/push_image.sh"
+      - ".github/workflows/c0x_scenario.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  IMAGE: ghcr.io/19623248git/tubes-3-if4020@sha256:332d9c180eeef05ac739c75d44bf5abc4579f0aeb6dd50df5732754f3f5fab0e
+  PACKAGE: zig-fork-app
+  VERSION: 0.1.0
+
+jobs:
+  c02:
+    name: C02 one byte changed after sign
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: clean output folders
+        run: rm -rf dist out
+
+      - name: build artifact
+        run: sh ci/build.sh
+
+      - name: sign ed25519
+        env:
+          SIGNING_KEY_PEM: ${{ secrets.SIGNING_KEY_ED25519 }}
+        run: sh ci/sign.sh
+
+      - name: change one byte of artifact
+        run: sh ci/c0x_scenario/tamper_byte.sh dist/app.zip
+
+      - name: verify must be rejected
+        id: verify
+        env:
+          EXPECTED_EXIT: 1
+          EXPECTED_STATUS: ARTIFACT_MISMATCH
+        run: sh ci/c0x_scenario/expect_reject.sh
+
+      - name: deploy only if verify exited 0
+        if: steps.verify.outputs.verify_exit == '0'
+        run: sh ci/deploy.sh
+
+      - name: marker shouldn't exist
+        run: sh ci/c0x_scenario/check_no_marker.sh
+
+      - name: upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: C02-evidence
+          path: out/
+
+  c03_empty:
+    name: C03 empty trust store
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: clean output folders
+        run: rm -rf dist out
+
+      - name: build artifact
+        run: sh ci/build.sh
+
+      - name: sign ed25519
+        env:
+          SIGNING_KEY_PEM: ${{ secrets.SIGNING_KEY_ED25519 }}
+        run: sh ci/sign.sh
+
+      - name: verify must be rejected
+        id: verify
+        env:
+          TRUST_STORE: ci/c0x_scenario/trust_empty.json
+          EXPECTED_EXIT: 1
+          EXPECTED_STATUS: KEY_NOT_TRUSTED
+        run: sh ci/c0x_scenario/expect_reject.sh
+
+      - name: deploy only if verify exited 0
+        if: steps.verify.outputs.verify_exit == '0'
+        run: sh ci/deploy.sh
+
+      - name: marker shouldn't exist
+        run: sh ci/c0x_scenario/check_no_marker.sh
+
+      - name: upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: C03-empty-evidence
+          path: out/
+
+  c03_other_package:
+    name: C03 key only allowed for another package
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: clean output folders
+        run: rm -rf dist out
+
+      - name: build artifact
+        run: sh ci/build.sh
+
+      - name: sign ed25519
+        env:
+          SIGNING_KEY_PEM: ${{ secrets.SIGNING_KEY_ED25519 }}
+        run: sh ci/sign.sh
+
+      - name: verify must be rejected
+        id: verify
+        env:
+          TRUST_STORE: ci/c0x_scenario/trust_other_package.json
+          EXPECTED_EXIT: 1
+          EXPECTED_STATUS: KEY_NOT_TRUSTED
+        run: sh ci/c0x_scenario/expect_reject.sh
+
+      - name: deploy only if verify exited 0
+        if: steps.verify.outputs.verify_exit == '0'
+        run: sh ci/deploy.sh
+
+      - name: marker shouldn't exist
+        run: sh ci/c0x_scenario/check_no_marker.sh
+
+      - name: upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: C03-other-package-evidence
+          path: out/
+
+  c03_swapped_key:
+    name: C03 trusted keyid with a different public key
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: clean output folders
+        run: rm -rf dist out
+
+      - name: build artifact
+        run: sh ci/build.sh
+
+      - name: sign ed25519
+        env:
+          SIGNING_KEY_PEM: ${{ secrets.SIGNING_KEY_ED25519 }}
+        run: sh ci/sign.sh
+
+      - name: verify must be rejected
+        id: verify
+        env:
+          TRUST_STORE: ci/c0x_scenario/trust_swapped_key.json
+          EXPECTED_EXIT: 1
+          EXPECTED_STATUS: FORMAT_ERROR
+        run: sh ci/c0x_scenario/expect_reject.sh
+
+      - name: deploy only if verify exited 0
+        if: steps.verify.outputs.verify_exit == '0'
+        run: sh ci/deploy.sh
+
+      - name: marker shouldn't exist
+        run: sh ci/c0x_scenario/check_no_marker.sh
+
+      - name: upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: C03-swapped-key-evidence
+          path: out/
+
+  c04:
+    name: C04 artifact file missing
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: clean output folders
+        run: rm -rf dist out
+
+      - name: build artifact
+        run: sh ci/build.sh
+
+      - name: sign ed25519
+        env:
+          SIGNING_KEY_PEM: ${{ secrets.SIGNING_KEY_ED25519 }}
+        run: sh ci/sign.sh
+
+      - name: verify must be rejected
+        id: verify
+        env:
+          ARTIFACT: dist/missing.zip
+          EXPECTED_EXIT: 2
+          EXPECTED_STATUS: INPUT_ERROR
+        run: sh ci/c0x_scenario/expect_reject.sh
+
+      - name: deploy only if verify exited 0
+        if: steps.verify.outputs.verify_exit == '0'
+        run: sh ci/deploy.sh
+
+      - name: marker shouldn't exist
+        run: sh ci/c0x_scenario/check_no_marker.sh
+
+      - name: upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: C04-evidence
+          path: out/
+
+  c05:
+    name: C05 runner UID/GID, no TTY, --network none
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v7
+
+      - name: clean output folders
+        run: rm -rf dist out
+
+      - name: pull image
+        run: docker pull "$IMAGE"
+
+      - name: run CLI as runner user, no TTY, no network
+        run: |
+          echo "runner uid:gid = $(id -u):$(id -g)"
+          if [ -t 0 ] || [ -t 1 ]; then echo "tty attached"; else echo "no tty"; fi
+          docker run --rm --network none --user "$(id -u):$(id -g)" "$IMAGE" --version
+
+      - name: build artifact
+        run: sh ci/build.sh
+
+      - name: sign ed25519
+        env:
+          SIGNING_KEY_PEM: ${{ secrets.SIGNING_KEY_ED25519 }}
+        run: sh ci/sign.sh
+
+      - name: verify
+        run: sh ci/verify.sh
+
+      - name: deploy
+        run: sh ci/deploy.sh
+
+      - name: bundle owned by runner user
+        run: |
+          want="$(id -u):$(id -g)"
+          got="$(stat -c '%u:%g' out/rilis.json)"
+          echo "out/rilis.json owner $got, runner $want"
+          [ "$got" = "$want" ]
+
+      - name: upload evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: C05-evidence
+          path: out/

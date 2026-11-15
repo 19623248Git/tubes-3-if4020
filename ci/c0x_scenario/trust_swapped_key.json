@@ -1,0 +1,13 @@
+{
+  "schema": "minisign-trust/v1",
+  "keys": [
+    {
+      "keyid": "3b0193088d56beff5dfb97b48fec407785e2e67924510ee98f583f24b052f8d2",
+      "algorithm": "ed25519",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAyYsA6DD5uQly8vgV3v09/Zh3hTPzyCH6ecEdHW95BQU=\n-----END PUBLIC KEY-----\n",
+      "packages": [
+        "zig-fork-app"
+      ]
+    }
+  ]
+}
