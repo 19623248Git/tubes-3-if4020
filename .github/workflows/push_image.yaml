@@ -5,7 +5,7 @@ on:
     branches: [master]
     paths:
       - "signer/**"
-      - "ci/push-image.sh"
+      - "ci/push_image.sh"
       - ".github/workflows/push_image.yml"
     tags: ["v*"]
  
