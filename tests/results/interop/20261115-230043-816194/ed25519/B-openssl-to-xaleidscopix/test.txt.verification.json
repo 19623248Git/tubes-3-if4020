@@ -1,0 +1,1 @@
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}

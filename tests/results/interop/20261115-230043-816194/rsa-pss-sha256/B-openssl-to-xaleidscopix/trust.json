@@ -1,0 +1,13 @@
+{
+  "schema": "minisign-trust/v1",
+  "keys": [
+    {
+      "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d",
+      "algorithm": "rsa-pss-sha256",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\r\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAl2wETeuY95bGRDiQDmpb\r\nfPJbSfTuoD8+9jsFepEqcpMdVDNuwMb1zrexXpR1sPrf1A4wiDn3xbuZKGwVCifl\r\nmnRDDEYacG8GOq1I7+nwP8ZGBE85whGGGjpQw9cz90SHPFeT9z4s0nEe0Rnz7uPB\r\n+EvGOaDONN4F4HLEK5z7TcXaJ7n98mgmh+1NRFRA8sDqb/R+W6k8EAKvHQZmdp7h\r\nxEPyZZDYNwuZ1y/Mw5ISuTjCpq/+Bm+nW5Y5FKIDhZqCfzIw4lGOhuMtl23v0tJS\r\n35RCXUzXRouSaWyB4fQ1EsBNwfyQtb4ayCl1hcarZm3D/8XCcHbtzcbmakMfE7bV\r\ncHV379U8qvnmZJEClajxVxvYR7lX5lrf/RnNXMa0i2douj2XPzwJli/OEEZzgVMB\r\nlty3R3LZt/zbkWlujYc5ioLcYuE4W22EpoOQ76HD3XEr3H+JVQZTWTJjA+uiaWKP\r\n+UyiDn5UGWiNiKeaP+YeZHNwEcgth8UAYtTp2R4TUrTjAgMBAAE=\r\n-----END PUBLIC KEY-----\r\n",
+      "packages": [
+        "interop-demo"
+      ]
+    }
+  ]
+}

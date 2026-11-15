@@ -1,0 +1,14 @@
+Date: 2026-11-15T23:10:14
+CPU: AMD Ryzen 7 7735HS with Radeon Graphics (16 logical CPUs)
+Memory: 15.2 GiB
+OS: Windows-11-10.0.26300-SP0
+Python: CPython 3.14.3 (D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\signer\.venv\Scripts\python.exe)
+cryptography: 50.0.2, linked against OpenSSL 4.0.3 29 Sep 2026
+Clock: time.perf_counter_ns (monotonic)
+Runs per batch: 5 warm-up (discarded) + 30 measured; keygen: 10 key pairs per profile
+Median: statistics.median. P95: nearest-rank, sorted samples, position ceil(0.95 * n) counting from 1.
+Garbage collector paused during each timed batch.
+Artifacts (random bytes, seed 20261116):
+  artifact-1KiB.bin: 1024 bytes, sha256 5e53e035b76488d1033773460f2d71edb885096e96a23d87bc3cb473a055ddb7
+  artifact-1MiB.bin: 1048576 bytes, sha256 a6311a8876c70bdc1598f84ce44f5f3e5939a0fa846aa4654da579876ededfb6
+  artifact-32MiB.bin: 33554432 bytes, sha256 2794eaf023501da6ae4514a04cb0cd43c3c660da38bda0224d1e878d64ba9529

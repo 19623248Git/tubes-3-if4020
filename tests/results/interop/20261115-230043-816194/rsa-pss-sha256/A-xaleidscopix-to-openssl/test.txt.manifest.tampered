@@ -1,0 +1,1 @@
+{"schema":"minisign-manifest/v1","package":"interop-demo","version":"1.0.0","algorithm":"rsa-pss-sha256","keyid":"49bf7e69c59693ae398ddf4e62bbc2fa29766576da942ed6228ec4b2305f834e","artifact":{"name":"test.txt","size":1069,"sha256":"ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b"}}

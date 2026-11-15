@@ -1,0 +1,10 @@
+profile,artifact,private_key_der,public_key_der,signature,signature_b64,manifest,bundle
+rsa-pss-sha256,1KiB,1793,422,384,512,305,1002
+rsa-pss-sha256,1MiB,1793,422,384,512,308,1006
+rsa-pss-sha256,32MiB,1793,422,384,512,310,1010
+ecdsa-p256-sha256,1KiB,138,91,64,88,308,582
+ecdsa-p256-sha256,1MiB,138,91,64,88,311,586
+ecdsa-p256-sha256,32MiB,138,91,64,88,313,590
+ed25519,1KiB,48,44,64,88,298,570
+ed25519,1MiB,48,44,64,88,301,574
+ed25519,32MiB,48,44,64,88,303,574

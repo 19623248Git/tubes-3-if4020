@@ -1,0 +1,925 @@
+Python 3.14.3, cryptography 50.0.2, Windows-11-10.0.26300-SP0
+Independent implementation: OpenSSL 3.2.4 11 Feb 2025 (Library: OpenSSL 3.2.4 11 Feb 2025) (C:\Program Files\Git\mingw64\bin\openssl.EXE)
+All private keys below are TEST-ONLY, generated for this run.
+
+COMMAND: xaleidscopix keygen --algorithm rsa-pss-sha256 --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+49bf7e69c59693ae398ddf4e62bbc2fa29776576da942ed6228ec4b2305f834e
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<422 bytes>
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -text -noout
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Public-Key: (3072 bit)
+Modulus:
+    00:cf:95:b7:86:bf:84:9e:15:0a:64:3d:ee:b8:9d:
+    94:57:89:24:57:46:38:81:1d:a1:a8:d5:b2:33:a3:
+    79:89:b0:cb:ae:93:1d:ba:18:f2:8e:1e:ad:12:b0:
+    2a:93:08:29:76:8d:62:19:98:30:29:ce:12:a1:f3:
+    7a:6a:21:58:24:82:17:32:42:f6:7e:75:aa:4f:d6:
+    45:fb:5e:f8:41:e6:19:91:cb:5e:c0:49:8b:0d:a4:
+    ab:0b:83:f9:d0:97:8a:11:19:4e:4a:00:26:1c:26:
+    96:6d:ee:93:8f:48:d9:44:75:c8:6e:5c:44:fe:47:
+    c0:67:ef:ff:9a:07:2b:51:ec:c5:e7:18:d1:f5:7f:
+    31:1b:35:ef:5c:b0:8c:73:5d:26:06:fc:c0:57:0a:
+    f8:58:9f:59:ba:25:0a:4c:49:98:d7:cc:90:3e:14:
+    b0:d4:fb:28:19:29:98:0c:8b:f8:05:b2:9e:ef:16:
+    3b:7e:19:5e:40:95:2d:9b:9a:f1:dd:2b:7f:d3:3c:
+    75:66:4a:91:47:78:2b:38:08:33:cb:8b:2a:11:9c:
+    e7:64:36:52:54:a9:82:39:88:a9:1e:3c:49:32:00:
+    6d:15:2f:00:78:b8:bf:2d:05:42:58:54:1b:51:4f:
+    aa:b1:9d:f0:36:b8:a0:f0:82:84:65:64:1a:e1:d9:
+    73:bf:8e:51:14:3f:fd:f7:3f:68:26:9f:4c:aa:4f:
+    7b:49:fd:b0:37:67:25:6c:4e:50:eb:13:85:53:6b:
+    18:50:0b:72:df:89:d9:1e:ba:d5:44:c1:40:cb:87:
+    6c:03:8f:15:f8:11:77:e3:ca:93:c8:29:79:c3:97:
+    58:c3:b0:38:73:18:c1:34:2b:49:c2:a0:ff:c5:08:
+    e7:de:d2:a7:bc:d6:c1:d5:91:ba:a0:bd:cc:7c:32:
+    20:3d:98:7d:c7:14:37:92:dd:81:dd:01:2f:67:44:
+    51:85:80:e7:34:29:9f:5b:a6:0d:58:41:b9:96:33:
+    ad:af:0c:68:8a:f6:c2:51:b3:87
+Exponent: 65537 (0x10001)
+STDERR:
+
+PASS A rsa-pss-sha256 key: OpenSSL parses the SPKI key, parameters match the profile, keyid matches
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed test.txt -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt.bundle.json (keyid 49bf7e69c59693ae398ddf4e62bbc2fa29776576da942ed6228ec4b2305f834e)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\test.txt.manifest.tampered
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Verification failure
+STDERR:
+486E0000:error:02000068:rsa routines:RSA_verify_PKCS1_PSS_mgf1:bad signature:../openssl-3.2.4/crypto/rsa/rsa_pss.c:133:
+486E0000:error:1C880004:Provider routines:rsa_verify:RSA lib:../openssl-3.2.4/providers/implementations/signature/rsa_sig.c:842:
+
+PASS A rsa-pss-sha256 test.txt: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin.bundle.json (keyid 49bf7e69c59693ae398ddf4e62bbc2fa29776576da942ed6228ec4b2305f834e)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\sample.bin.manifest.tampered
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Verification failure
+STDERR:
+E0170000:error:02000068:rsa routines:RSA_verify_PKCS1_PSS_mgf1:bad signature:../openssl-3.2.4/crypto/rsa/rsa_pss.c:133:
+E0170000:error:1C880004:Provider routines:rsa_verify:RSA lib:../openssl-3.2.4/providers/implementations/signature/rsa_sig.c:842:
+
+PASS A rsa-pss-sha256 sample.bin: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed empty.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin.bundle.json (keyid 49bf7e69c59693ae398ddf4e62bbc2fa29776576da942ed6228ec4b2305f834e)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\A-xaleidscopix-to-openssl\empty.bin.manifest.tampered
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Verification failure
+STDERR:
+EC030000:error:02000068:rsa routines:RSA_verify_PKCS1_PSS_mgf1:bad signature:../openssl-3.2.4/crypto/rsa/rsa_pss.c:133:
+EC030000:error:1C880004:Provider routines:rsa_verify:RSA lib:../openssl-3.2.4/providers/implementations/signature/rsa_sig.c:842:
+
+PASS A rsa-pss-sha256 empty.bin: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -pkeyopt rsa_keygen_pubexp:65537 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+.....+...+....+...+...+..+......+.....................+.+.....+...+....+...+..............+.+...+......+..................+........+...++++++++++++++++++++++++++++++++++++++++++*..+.....+.+..+...+.........+...+..........+......+..+...+....+..+.++++++++++++++++++++++++++++++++++++++++++*...+.......+...+++++
+.+...+..+...+....+........+.+.....+....+...+..+...++++++++++++++++++++++++++++++++++++++++++*....+..+..........+......++++++++++++++++++++++++++++++++++++++++++*............................+..+......+.......+............+..+.+........................+...+.....+.+........................+.....+.+.....+.......+...+............+..+............+.............+...+..+...+............+..........+...+.....+.......+.....+......+.+...........+...+....+..+.........+.....................+....+...........................+++++
+
+
+COMMAND: openssl pkey -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -pubout -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<422 bytes>
+STDERR:
+
+
+COMMAND: xaleidscopix trust add --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem --package interop-demo --store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d rsa-pss-sha256 package=interop-demo
+STDERR:
+
+PASS B rsa-pss-sha256 key: xaleidscopix accepts the OpenSSL key, keyid matches
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sign D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\test.txt.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "rsa-pss-sha256", "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B rsa-pss-sha256 test.txt: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sign D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\sample.bin.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "rsa-pss-sha256", "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B rsa-pss-sha256 sample.bin: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sign D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\empty.bin.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "rsa-pss-sha256", "keyid": "8526fbb432df06007584780568b9941cd994a9d0df6972f8becf1af917699f0d", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B rsa-pss-sha256 empty.bin: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -pkeyopt rsa_keygen_pubexp:65537 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+.........+.+...+..+.........+.........+.......+...+...........+....+..+....+...++++++++++++++++++++++++++++++++++++++++++*.....+...+.++++++++++++++++++++++++++++++++++++++++++*................+....+.....+++++
+....+....+........+....+........+.......+...+...+..+.+......+.....+.....................+....+.....+.++++++++++++++++++++++++++++++++++++++++++*...+..+....+............+..............+.+..+......+.+...+......+...........+.++++++++++++++++++++++++++++++++++++++++++*.....+..................+...+..............+..........+...........+....+......+..+.+.....+.+.................................+...+.........+.........+..+............+................+.....+.........+.+.....+....+.....+......+.+.....+....+..........................+.+...+...............+..+.........+..........+......+.........+.........+......+......+...+..+....+...........+.......+........+............................+..+...+.........+.+............+.........+...........+....+.....+.+........+...............+............+....+........+................+.....+......................+...+.........+..+................+...+..+.......+.....+.+...........+......+...+.+...+...............+.....+.......+......+..+.+....................+......+.+...+.....+............+............+.+......+...........+..........+..................+......+...+.....+...+...+.+...+...+..............+...+...+.......+......+......+........+......+.+..............+.......+..+............+...+.......+...+..+.+...............+...+..+....+...........+...+............+...................+...........+...+.+...........+...+....+..+.............+..+.+...+......+.....+...+......+........................+.+......+.....+..........+......+............+......+............+..+............+......+...+....+.....+......+.+......+...............+.....+...+.....................+...............+.+..+...+....+.....+....+......+...........+....+.....+++++
+
+
+COMMAND: openssl pkey -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem -pubout -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\sample.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\sample.bin.bundle.json (keyid 5e6b0e939e123b700e811f95284b1c2f5aad888b0ced9b10514452f056052ba6)
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<422 bytes>
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\rsa-pss-sha256\C-openssl-key-xaleidscopix-sign\sample.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+PASS C rsa-pss-sha256 sample.bin: xaleidscopix signs with an OpenSSL-generated key, OpenSSL verifies it
+
+COMMAND: xaleidscopix keygen --algorithm ecdsa-p256-sha256 --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+159117ba756662a5a0fada2a7fa0765e6d8daf1f3d8391f791395647d89f337d
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<91 bytes>
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -text -noout
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Public-Key: (256 bit)
+pub:
+    04:ed:b1:ac:89:dd:e7:4c:3c:bb:3d:67:25:86:dc:
+    c9:bc:65:21:12:2a:3d:7e:6d:0e:aa:9e:a5:ef:46:
+    60:64:54:c9:56:c1:a6:3c:04:56:20:8a:82:3d:76:
+    1b:ba:54:5c:f5:7f:b9:50:b0:ac:de:71:ff:34:fb:
+    94:34:94:d3:90
+ASN1 OID: prime256v1
+NIST CURVE: P-256
+STDERR:
+
+PASS A ecdsa-p256-sha256 key: OpenSSL parses the SPKI key, parameters match the profile, keyid matches
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed test.txt -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt.bundle.json (keyid 159117ba756662a5a0fada2a7fa0765e6d8daf1f3d8391f791395647d89f337d)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\test.txt.manifest.tampered
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Verification failure
+STDERR:
+
+PASS A ecdsa-p256-sha256 test.txt: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin.bundle.json (keyid 159117ba756662a5a0fada2a7fa0765e6d8daf1f3d8391f791395647d89f337d)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\sample.bin.manifest.tampered
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Verification failure
+STDERR:
+
+PASS A ecdsa-p256-sha256 sample.bin: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed empty.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin.bundle.json (keyid 159117ba756662a5a0fada2a7fa0765e6d8daf1f3d8391f791395647d89f337d)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\A-xaleidscopix-to-openssl\empty.bin.manifest.tampered
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Verification failure
+STDERR:
+
+PASS A ecdsa-p256-sha256 empty.bin: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -pkeyopt ec_param_enc:named_curve -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -pubout -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<91 bytes>
+STDERR:
+
+
+COMMAND: xaleidscopix trust add --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem --package interop-demo --store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592 ecdsa-p256-sha256 package=interop-demo
+STDERR:
+
+PASS B ecdsa-p256-sha256 key: xaleidscopix accepts the OpenSSL key, keyid matches
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sign D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\test.txt.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ecdsa-p256-sha256", "keyid": "1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B ecdsa-p256-sha256 test.txt: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sign D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\sample.bin.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ecdsa-p256-sha256", "keyid": "1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B ecdsa-p256-sha256 sample.bin: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -sign D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\empty.bin.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ecdsa-p256-sha256", "keyid": "1aa92ffdf056e4e1d2c21a787d2506fce61a26eac149c2098ab0452b580bc592", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B ecdsa-p256-sha256 empty.bin: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -pkeyopt ec_param_enc:named_curve -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem -pubout -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\sample.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\sample.bin.bundle.json (keyid ecd0e4db2ea8517970d80e5ceba4f82f51574ba5aac2f2e1f622c9acf7a7f035)
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<91 bytes>
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -verify D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem -signature D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\signature.openssl D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ecdsa-p256-sha256\C-openssl-key-xaleidscopix-sign\sample.bin.manifest
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Verified OK
+STDERR:
+
+PASS C ecdsa-p256-sha256 sample.bin: xaleidscopix signs with an OpenSSL-generated key, OpenSSL verifies it
+
+COMMAND: xaleidscopix keygen --algorithm ed25519 --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+344137b6c950f741a91ebb97781425d4424e49760d70686431ecd7a93b380f87
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<44 bytes>
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -text -noout
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ED25519 Public-Key:
+pub:
+    f5:3e:a3:87:82:2f:72:e1:19:80:65:a4:ea:f2:64:
+    b3:5d:2c:34:9a:ea:55:ff:c3:3e:81:b9:16:17:d8:
+    1b:a1
+STDERR:
+
+PASS A ed25519 key: OpenSSL parses the SPKI key, parameters match the profile, keyid matches
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed test.txt -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt.bundle.json (keyid 344137b6c950f741a91ebb97781425d4424e49760d70686431ecd7a93b380f87)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt.manifest -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Signature Verified Successfully
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\test.txt.manifest.tampered -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\signature.openssl
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Signature Verification Failure
+STDERR:
+
+PASS A ed25519 test.txt: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin.bundle.json (keyid 344137b6c950f741a91ebb97781425d4424e49760d70686431ecd7a93b380f87)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin.manifest -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Signature Verified Successfully
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\sample.bin.manifest.tampered -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\signature.openssl
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Signature Verification Failure
+STDERR:
+
+PASS A ed25519 sample.bin: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed empty.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin.bundle.json (keyid 344137b6c950f741a91ebb97781425d4424e49760d70686431ecd7a93b380f87)
+STDERR:
+
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin.manifest -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Signature Verified Successfully
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\xaleidscopix-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\empty.bin.manifest.tampered -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\A-xaleidscopix-to-openssl\signature.openssl
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+Signature Verification Failure
+STDERR:
+
+PASS A ed25519 empty.bin: OpenSSL verifies the signature and rejects a manifest with one changed byte
+
+COMMAND: openssl genpkey -algorithm ED25519 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.key.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -pubout -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<44 bytes>
+STDERR:
+
+
+COMMAND: xaleidscopix trust add --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.pub.pem --package interop-demo --store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457 ed25519 package=interop-demo
+STDERR:
+
+PASS B ed25519 key: xaleidscopix accepts the OpenSSL key, keyid matches
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+ff5d9ea2d0e3ded4ed2be5f30fddadb352d2f6d96366ede17db4860f3b63172b *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt
+STDERR:
+
+
+COMMAND: openssl pkeyutl -sign -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt.manifest -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\test.txt.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B ed25519 test.txt: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin
+STDERR:
+
+
+COMMAND: openssl pkeyutl -sign -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin.manifest -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\sample.bin.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B ed25519 sample.bin: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl dgst -sha256 -r D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 *D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin
+STDERR:
+
+
+COMMAND: openssl pkeyutl -sign -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\openssl-publisher.key.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin.manifest -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin --bundle D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\empty.bin.bitflip.bundle.json --trust-store D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\B-openssl-to-xaleidscopix\trust.json --package interop-demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ed25519", "keyid": "eeff69585dbdc5d7b8c59cd8a7b19090b433e6ea0d09b63bfdc132cc22ca4457", "package": "interop-demo", "version": "1.0.0"}
+STDERR:
+
+PASS B ed25519 empty.bin: xaleidscopix verifies an OpenSSL signature (OK) and rejects one flipped bit (INVALID_SIGNATURE)
+
+COMMAND: openssl genpkey -algorithm ED25519 -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: openssl pkey -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem -pubout -out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\sample.bin --package interop-demo --version 1.0.0 --key D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\openssl-publisher.key.pem --out D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\sample.bin.bundle.json (keyid 6980b071d10aa52e8c86fe39420a6fdac7c33e179d8aa873696e7e084bb538f8)
+STDERR:
+
+
+COMMAND: openssl pkey -pubin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem -outform DER
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+<44 bytes>
+STDERR:
+
+
+COMMAND: openssl pkeyutl -verify -pubin -inkey D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\openssl-publisher.pub.pem -rawin -in D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\sample.bin.manifest -sigfile D:\Kuliah\Sem_7\Crypto\tugas3\tubes-3-if4020\tests\results\interop\20261115-230043-816194\ed25519\C-openssl-key-xaleidscopix-sign\signature.openssl
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+Signature Verified Successfully
+STDERR:
+
+PASS C ed25519 sample.bin: xaleidscopix signs with an OpenSSL-generated key, OpenSSL verifies it
+
+All 27 interoperability checks passed against OpenSSL 3.2.4 11 Feb 2025 (Library: OpenSSL 3.2.4 11 Feb 2025).

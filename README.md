@@ -235,7 +235,34 @@ With `--json`:
 
 #### U01 to U14
 
-ADD THIS LATER
+`tests/test.py` runs the minimum scenarios from Table 2.11 through the CLI. Each profile first gets a test-only key pair from `keygen`, a trust store from `trust add` for the package `demo`, and signed releases of the three files in `tests/test_cases`: `test.txt` (text), `sample.bin` (1 KiB binary) and `empty.bin` (0 bytes). U01 and U14 run for all three profiles. U02 to U13 start from the valid Ed25519 release of `sample.bin` and change one thing each, which the spec allows since they are not specific to one algorithm.
+
+| Scenario | What is changed | Expected status | Exit |
+|---|---|---|---|
+| U01 | nothing: text, binary and empty files signed and verified with matching key and metadata, all three profiles | `OK` | 0 |
+| U02 | the first byte of the artifact is flipped, size and name unchanged | `ARTIFACT_MISMATCH` | 1 |
+| U03 | one byte appended to the artifact, and separately one byte removed | `ARTIFACT_MISMATCH` | 1 |
+| U04 | `version` in the manifest changed to `2.0.0`, still canonically serialized, old signature kept | `INVALID_SIGNATURE` | 1 |
+| U05 | one bit of the signature flipped, same length, valid Base64 | `INVALID_SIGNATURE` | 1 |
+| U06 | the trust store emptied, and separately the publisher key removed with `trust remove` | `KEY_NOT_TRUSTED` | 1 |
+| U07 | the publisher key is only allowed for `other-app` | `KEY_NOT_TRUSTED` | 1 |
+| U08 | valid bundle, but verify expects version `2.0.0` | `METADATA_MISMATCH` | 1 |
+| U09 | the artifact file renamed to `renamed.bin`, contents unchanged | `METADATA_MISMATCH` | 1 |
+| U10 | each tested separately: a duplicate `version` field, `artifact.size` as a string, an invalid Base64 character, a manifest of 16385 bytes | `FORMAT_ERROR` | 1 |
+| U11 | `algorithm` set to `unknown-profile` | `UNSUPPORTED_ALGORITHM` | 1 |
+| U12 | signed with another Ed25519 key whose keyid is correct but which is not in the trust store | `KEY_NOT_TRUSTED` | 1 |
+| U13 | bundle fields reordered and indented, both Base64 strings unchanged | `OK` | 0 |
+| U14 | the same manifest signed twice with the same key, all three profiles; both bundles verified and the signatures compared | `OK` | 0 |
+
+U14 result: RSA-PSS and ECDSA give two different signatures because every signature uses a fresh random 32-byte salt or random nonce, while Ed25519 gives two identical signatures because it is deterministic. Each comparison is saved as `comparison.txt`.
+
+Run it from the repository root:
+
+```bash
+uv run --project signer --locked python tests/test.py
+```
+
+The script stops at the first command whose exit code or status differs from the expected one. Each run writes to `tests/results/U01_U14/<timestamp>/`: the keys, artifacts, bundles and trust stores of every case, the `verify --json` output of each case as `<case>.verification.json`, and a full command log with expected and actual exit codes in `results.txt`. The committed run, `20261115-223118-786842`, passed all 32 verification cases and the 3 signature comparisons. All private keys there are test-only.
 
 #### C01 to C05
 
@@ -255,6 +282,68 @@ To rerun them, open the Actions tab, pick `ci app` or `c0x scenarios`, and press
 gh workflow run ci_app.yaml
 gh workflow run c0x_scenario.yaml
 ```
+
+#### Interoperability
+
+`tests/interop.py` checks every profile against OpenSSL, an independent implementation, in both directions:
+
+| Direction | What happens | Expected result |
+|---|---|---|
+| A, xaleidscopix to OpenSSL | xaleidscopix runs keygen and sign; OpenSSL re-exports the public key, recomputes the keyid and artifact SHA-256, checks the key parameters and verifies the signature | OpenSSL verifies the signature; a manifest with one changed byte fails |
+| B, OpenSSL to xaleidscopix | OpenSSL generates the key pair and signs a manifest built by the script; xaleidscopix runs trust add and verify | `trust add` prints the same keyid, verify gives `OK`; one flipped signature bit gives `INVALID_SIGNATURE` |
+| C, OpenSSL key, xaleidscopix sign | xaleidscopix signs with an OpenSSL-generated key, OpenSSL verifies | OpenSSL verifies the signature |
+
+Directions A and B use `test.txt`, `sample.bin` and `empty.bin` from `tests/test_cases`, which gives 27 checks in total. For ECDSA the script converts between the bundle's `r || s` and the ASN.1 DER form OpenSSL uses, with its own small DER encoder and decoder rather than the library under test.
+
+OpenSSL commands used per profile:
+
+| Profile | Key generation | Sign / verify |
+|---|---|---|
+| `rsa-pss-sha256` | `genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 -pkeyopt rsa_keygen_pubexp:65537` | `dgst -sha256 -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256` |
+| `ecdsa-p256-sha256` | `genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -pkeyopt ec_param_enc:named_curve` | `dgst -sha256`, signature converted between DER and `r \|\| s` |
+| `ed25519` | `genpkey -algorithm ED25519` | `pkeyutl -rawin` (pure Ed25519, no pre-hash) |
+
+The RSA key is generated with `-algorithm RSA`, not `RSA-PSS`, so its SPKI uses the `rsaEncryption` OID that Table 2.5 requires.
+
+Run it from the repository root. It needs `openssl` on `PATH`, or `OPENSSL=/path/to/openssl`:
+
+```bash
+uv run --project signer --locked python tests/interop.py
+```
+
+Each run writes its keys, bundles, manifests, verification results and a full command log to `tests/results/interop/<timestamp>/results.txt`. All private keys there are test-only.
+
+#### Performance
+
+`tests/benchmark.py` measures every profile on the same three artifacts, 1 KiB, 1 MiB and 32 MiB of random bytes generated from a fixed seed:
+
+| Metric | What is timed |
+|---|---|
+| `keygen` | generating one key pair, 10 key pairs per profile, separate from sign and verify |
+| `hash` | SHA-256 over the artifact bytes already in memory, no file I/O |
+| `sign`, `verify` | the signature operation over the manifest bytes only, including the algorithm's internal hash; no I/O and no artifact hashing |
+| `e2e_inproc_sign`, `e2e_inproc_verify` | the full `sign` and `verify` commands called inside one Python process: reading files, hashing the artifact, parsing, writing the bundle or printing the result |
+| `e2e_cli_sign`, `e2e_cli_verify` | the same commands as a new `xaleidscopix` process, so Python interpreter start-up is included |
+| sizes | private key (PKCS8 DER, unencrypted), public key (SPKI DER), signature before and after Base64, manifest and bundle, in bytes |
+
+Every timed batch runs 5 warm-up iterations that are thrown away, then 30 measured ones, timed with `time.perf_counter_ns`, a monotonic clock. The garbage collector is paused inside each batch. The median comes from `statistics.median`, and P95 uses the nearest-rank method: sort the samples and take position `ceil(0.95 * n)` counting from 1, which is the 29th of 30.
+
+Run it from the repository root:
+
+```bash
+uv run --project signer --locked python tests/benchmark.py
+```
+
+`--runs`, `--warmup` and `--keygen-runs` change the counts, and `--quick` does a tiny smoke run whose numbers are not meant for the report. Each run writes to `tests/results/benchmark/<timestamp>/`:
+
+| File | Contents |
+|---|---|
+| `environment.txt` | CPU, memory, OS, Python and library versions, the OpenSSL version `cryptography` is linked against, the method, and the SHA-256 of each generated artifact |
+| `summary.md`, `summary.csv` | median, P95, min and max per metric, profile and artifact |
+| `sizes.csv` | key, signature, manifest and bundle sizes |
+| `raw.csv` | every individual sample in nanoseconds |
+
+The artifacts are written to a temporary folder and deleted afterwards because the 32 MiB file is too large to commit; the fixed seed recreates the same bytes on every run.
 
 ## File formats
 
