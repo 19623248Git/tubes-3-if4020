@@ -1,0 +1,1 @@
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0", "package": "demo", "version": "1.0.0"}

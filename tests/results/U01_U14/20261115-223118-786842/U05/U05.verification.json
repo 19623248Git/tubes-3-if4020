@@ -1,0 +1,1 @@
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}

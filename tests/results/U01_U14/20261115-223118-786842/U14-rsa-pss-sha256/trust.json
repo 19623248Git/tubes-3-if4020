@@ -1,0 +1,13 @@
+{
+  "schema": "minisign-trust/v1",
+  "keys": [
+    {
+      "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0",
+      "algorithm": "rsa-pss-sha256",
+      "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAuK/g9bjJ3LjEU76czTg2\naWKUB4rSnk96XlTA23NxicWDcfbpmEHksvB+AHQqas/lPFJJF4cz98KCAJUR0VAG\nroIO6N0NPftMgHO8H/FEUmaMCxEvVhSAyt5berMvCcOKOWBunAtMGd81LTBLj5QS\n8tM07i7ZXw7/g32YdN0r6hfQmOCTAyWWPGpvnBssMigd+nAZnwQK+ZaYqS1cQupi\nTakJQCHoLc6SkSlPFaB6GXPwXOWQOmR/9Da7BiL+6e3HvP41WC8dDlhjaUOSoEeE\n8q6hPnB7+7GslLrwg5uc6HpCRuG8H5cv3TwX41qWi0nCrhrydYJ1N6Zd1MLQwBOA\nhO/r3kvol7NXRzj0g0bbkgZ5BCEXXedRgJrXkJLkfDkPaZfUg6wN4a6wcb13oe/F\nxNyUc/T8PfYS8aKSbksS9B5ye2tALwhHSdAInYr9MVABrPMFm/w+Lp7kBU+X6NRx\nTkbkSogxMp+DIGa26Oa8+zuYsw9fh2SA6y1GJBaIKs45AgMBAAE=\n-----END PUBLIC KEY-----\n",
+      "packages": [
+        "demo"
+      ]
+    }
+  ]
+}

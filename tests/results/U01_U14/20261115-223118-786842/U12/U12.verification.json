@@ -1,0 +1,1 @@
+{"valid": false, "status": "KEY_NOT_TRUSTED", "message": "key is not trusted for this package and profile", "algorithm": "ed25519", "keyid": "0e990b6fdc0d092ce938dea86c89a009774ecb6cae4dc6431f3b94a2c6b548f7", "package": "demo", "version": "1.0.0"}

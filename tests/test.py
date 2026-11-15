@@ -14,7 +14,7 @@ import cryptography
 
 root = Path(__file__).resolve().parents[1]
 fixtures = root / "tests/test_cases"
-output = root / "tests/results/U01_U09" / datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+output = root / "tests/results/U01_U14" / datetime.now().strftime("%Y%m%d-%H%M%S-%f")
 output.mkdir(parents=True)
 env = dict(os.environ, PYTHONPATH=str(root / "signer/src"), PYTHONDONTWRITEBYTECODE="1")
 cli = [sys.executable, "-B", "-m", "signer.xaleidscopix"]
@@ -142,6 +142,104 @@ with (output / "results.txt").open("w", encoding="utf-8") as log:
 
         check(label, artifact, case_bundle, case_store, status, version=version)
 
-    log.write("\nAll 19 verification cases passed.\n")
+    # U10: test malformed inputs separately
+    for label in ("U10-duplicate-field", "U10-wrong-type", "U10-invalid-base64", "U10-oversized-manifest"):
+        case = output / label
+        case.mkdir()
+        artifact = case / "sample.bin"
+        artifact.write_bytes(original)
+        case_store = case / "trust.json"
+        case_store.write_bytes(store.read_bytes())
+        contents = json.loads(bundle.read_bytes())
+        manifest_bytes = base64.b64decode(contents["manifest_b64"])
 
-print(f"All 19 cases passed. Results: {output / 'results.txt'}")
+        if label == "U10-duplicate-field":
+            changed = manifest_bytes.replace(b'"version":', b'"version":"1.0.0","version":', 1)
+            contents["manifest_b64"] = base64.b64encode(changed).decode("ascii")
+        elif label == "U10-wrong-type":
+            manifest = json.loads(manifest_bytes)
+            manifest["artifact"]["size"] = str(manifest["artifact"]["size"])
+            changed = json.dumps(manifest, separators=(",", ":")).encode("utf-8")
+            contents["manifest_b64"] = base64.b64encode(changed).decode("ascii")
+        elif label == "U10-invalid-base64":
+            contents["manifest_b64"] = "!" + contents["manifest_b64"][1:]
+        elif label == "U10-oversized-manifest":
+            changed = manifest_bytes + b" " * (16385 - len(manifest_bytes))
+            assert len(changed) == 16385
+            assert json.loads(changed) == json.loads(manifest_bytes)
+            contents["manifest_b64"] = base64.b64encode(changed).decode("ascii")
+
+        case_bundle = case / "release.json"
+        data = json.dumps(contents).encode("utf-8")
+        assert len(data) < 64 * 1024
+        case_bundle.write_bytes(data)
+        check(label, artifact, case_bundle, case_store, "FORMAT_ERROR")
+
+    # U11-U13: unsupported profile, untrusted signer, and harmless bundle formatting.
+    for label, status in (("U11", "UNSUPPORTED_ALGORITHM"),
+                          ("U12", "KEY_NOT_TRUSTED"), ("U13", "OK")):
+        case = output / label
+        case.mkdir()
+        artifact = case / "sample.bin"
+        artifact.write_bytes(original)
+        case_store = case / "trust.json"
+        case_store.write_bytes(store.read_bytes())
+        case_bundle = case / "release.json"
+        contents = json.loads(bundle.read_bytes())
+
+        if label == "U11":
+            manifest = json.loads(base64.b64decode(contents["manifest_b64"]))
+            manifest["algorithm"] = "unknown-profile"
+            changed = json.dumps(manifest, separators=(",", ":")).encode("utf-8")
+            contents["manifest_b64"] = base64.b64encode(changed).decode("ascii")
+            case_bundle.write_text(json.dumps(contents), encoding="utf-8")
+        elif label == "U12":
+            prefix = case / "other-publisher"
+            run("keygen", "--algorithm", "ed25519", "--out", prefix)
+            run("sign", "--file", artifact, "--package", "demo", "--version", "1.0.0",
+                "--key", f"{prefix}.key.pem", "--out", case_bundle)
+            signed = json.loads(case_bundle.read_bytes())
+            manifest = json.loads(base64.b64decode(signed["manifest_b64"]))
+            trusted = json.loads(case_store.read_bytes())["keys"]
+            assert manifest["algorithm"] == "ed25519"
+            assert all(entry["keyid"] != manifest["keyid"] for entry in trusted)
+        elif label == "U13":
+            reformatted = json.dumps(dict(reversed(list(contents.items()))), indent=4)
+            assert json.loads(reformatted) == contents
+            case_bundle.write_text(reformatted, encoding="utf-8")
+
+        check(label, artifact, case_bundle, case_store, status)
+
+    # U14: sign the same manifest twice with the same key, for every profile.
+    for algorithm, explanation in (
+        ("rsa-pss-sha256", "RSA-PSS uses a fresh random 32-byte salt; signatures normally differ."),
+        ("ecdsa-p256-sha256", "This signer uses ECDSA with random nonces; signatures normally differ."),
+        ("ed25519", "Ed25519 is deterministic; the same key and message produce identical signatures."),
+    ):
+        case = output / f"U14-{algorithm}"
+        case.mkdir()
+        artifact = case / "sample.bin"
+        artifact.write_bytes(original)
+        case_store = case / "trust.json"
+        case_store.write_bytes((output / algorithm / "trust.json").read_bytes())
+        key = output / algorithm / "test-publisher.key.pem"
+        signed_bundles = []
+        for number in (1, 2):
+            case_bundle = case / f"release-{number}.json"
+            run("sign", "--file", artifact, "--package", "demo", "--version", "1.0.0",
+                "--key", key, "--out", case_bundle)
+            check(f"U14-{algorithm}-{number}", artifact, case_bundle, case_store, "OK")
+            signed_bundles.append(json.loads(case_bundle.read_bytes()))
+
+        first, second = signed_bundles
+        assert base64.b64decode(first["manifest_b64"]) == base64.b64decode(second["manifest_b64"])
+        identical = base64.b64decode(first["signature_b64"]) == base64.b64decode(second["signature_b64"])
+        assert identical == (algorithm == "ed25519"), f"unexpected signature comparison for {algorithm}"
+        comparison = f"U14 {algorithm}: identical manifest bytes; signatures {'identical' if identical else 'different'}. {explanation}"
+        (case / "comparison.txt").write_text(comparison + "\n", encoding="utf-8")
+        print(comparison)
+        log.write(comparison + "\n")
+
+    log.write("\nAll 32 verification cases and 3 signature comparisons passed.\n")
+
+print(f"All 32 verification cases and 3 signature comparisons passed. Results: {output / 'results.txt'}")

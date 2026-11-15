@@ -1,0 +1,519 @@
+Python 3.14.3, cryptography 50.0.2, Windows-11-10.0.26200-SP0
+All generated private keys below are TEST-ONLY, not CI/service keys.
+
+COMMAND: xaleidscopix keygen --algorithm rsa-pss-sha256 --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher --overwrite
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0
+STDERR:
+
+
+COMMAND: xaleidscopix trust add --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher.pub.pem --package demo --store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0 rsa-pss-sha256 package=demo
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test.txt --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test.txt.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed test.txt -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test.txt.bundle.json (keyid 3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test.txt --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test.txt.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-rsa-pss-sha256-test.txt: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\sample.bin.bundle.json (keyid 3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\sample.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-rsa-pss-sha256-sample.bin: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\empty.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\empty.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed empty.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\empty.bin.bundle.json (keyid 3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\empty.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\empty.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-rsa-pss-sha256-empty.bin: OK, exit 0
+
+COMMAND: xaleidscopix keygen --algorithm ecdsa-p256-sha256 --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher --overwrite
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d
+STDERR:
+
+
+COMMAND: xaleidscopix trust add --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher.pub.pem --package demo --store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d ecdsa-p256-sha256 package=demo
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test.txt --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test.txt.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed test.txt -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test.txt.bundle.json (keyid d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test.txt --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test.txt.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-ecdsa-p256-sha256-test.txt: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\sample.bin.bundle.json (keyid d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\sample.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-ecdsa-p256-sha256-sample.bin: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\empty.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\empty.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed empty.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\empty.bin.bundle.json (keyid d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\empty.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\empty.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-ecdsa-p256-sha256-empty.bin: OK, exit 0
+
+COMMAND: xaleidscopix keygen --algorithm ed25519 --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher --overwrite
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d
+STDERR:
+
+
+COMMAND: xaleidscopix trust add --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher.pub.pem --package demo --store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d ed25519 package=demo
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test.txt --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test.txt.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed test.txt -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test.txt.bundle.json (keyid 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test.txt --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test.txt.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-ed25519-test.txt: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin.bundle.json (keyid 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-ed25519-sample.bin: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\empty.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\empty.bin.bundle.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed empty.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\empty.bin.bundle.json (keyid 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\empty.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\empty.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U01-ed25519-empty.bin: OK, exit 0
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U02\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "ARTIFACT_MISMATCH", "message": "artifact size or SHA-256 differs", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: ARTIFACT_MISMATCH
+PASS U02: ARTIFACT_MISMATCH, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U03-append\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "ARTIFACT_MISMATCH", "message": "artifact size or SHA-256 differs", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: ARTIFACT_MISMATCH
+PASS U03-append: ARTIFACT_MISMATCH, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U03-truncate\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\sample.bin.bundle.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "ARTIFACT_MISMATCH", "message": "artifact size or SHA-256 differs", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: ARTIFACT_MISMATCH
+PASS U03-truncate: ARTIFACT_MISMATCH, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U04\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U04\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U04\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "2.0.0"}
+STDERR:
+
+EXPECTED STATUS: INVALID_SIGNATURE
+PASS U04: INVALID_SIGNATURE, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U05\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U05\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U05\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "INVALID_SIGNATURE", "message": "manifest signature is invalid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: INVALID_SIGNATURE
+PASS U05: INVALID_SIGNATURE, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-empty\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-empty\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-empty\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "KEY_NOT_TRUSTED", "message": "key is not trusted for this package and profile", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: KEY_NOT_TRUSTED
+PASS U06-empty: KEY_NOT_TRUSTED, exit 1
+
+COMMAND: xaleidscopix trust remove --keyid 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d --store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-removed\trust.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+removed 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-removed\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-removed\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U06-removed\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "KEY_NOT_TRUSTED", "message": "key is not trusted for this package and profile", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: KEY_NOT_TRUSTED
+PASS U06-removed: KEY_NOT_TRUSTED, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U07\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U07\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U07\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "KEY_NOT_TRUSTED", "message": "key is not trusted for this package and profile", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: KEY_NOT_TRUSTED
+PASS U07: KEY_NOT_TRUSTED, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U08\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U08\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U08\trust.json --package demo --version 2.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "METADATA_MISMATCH", "message": "package, version, or artifact filename differs", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: METADATA_MISMATCH
+PASS U08: METADATA_MISMATCH, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U09\renamed.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U09\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U09\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "METADATA_MISMATCH", "message": "package, version, or artifact filename differs", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: METADATA_MISMATCH
+PASS U09: METADATA_MISMATCH, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-duplicate-field\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-duplicate-field\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-duplicate-field\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "FORMAT_ERROR", "message": "duplicate field: version", "algorithm": null, "keyid": null, "package": null, "version": null}
+STDERR:
+
+EXPECTED STATUS: FORMAT_ERROR
+PASS U10-duplicate-field: FORMAT_ERROR, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-wrong-type\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-wrong-type\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-wrong-type\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "FORMAT_ERROR", "message": "invalid artifact size: '1024'", "algorithm": null, "keyid": null, "package": null, "version": null}
+STDERR:
+
+EXPECTED STATUS: FORMAT_ERROR
+PASS U10-wrong-type: FORMAT_ERROR, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-invalid-base64\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-invalid-base64\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-invalid-base64\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "FORMAT_ERROR", "message": "invalid Base64 encoding", "algorithm": null, "keyid": null, "package": null, "version": null}
+STDERR:
+
+EXPECTED STATUS: FORMAT_ERROR
+PASS U10-invalid-base64: FORMAT_ERROR, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-oversized-manifest\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-oversized-manifest\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U10-oversized-manifest\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "FORMAT_ERROR", "message": "manifest exceeds 16 KiB", "algorithm": null, "keyid": null, "package": null, "version": null}
+STDERR:
+
+EXPECTED STATUS: FORMAT_ERROR
+PASS U10-oversized-manifest: FORMAT_ERROR, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U11\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U11\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U11\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "UNSUPPORTED_ALGORITHM", "message": "unsupported algorithm", "algorithm": "unknown-profile", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: UNSUPPORTED_ALGORITHM
+PASS U11: UNSUPPORTED_ALGORITHM, exit 1
+
+COMMAND: xaleidscopix keygen --algorithm ed25519 --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\other-publisher
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+0e990b6fdc0d092ce938dea86c89a009774ecb6cae4dc6431f3b94a2c6b548f7
+STDERR:
+
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\other-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\release.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\release.json (keyid 0e990b6fdc0d092ce938dea86c89a009774ecb6cae4dc6431f3b94a2c6b548f7)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U12\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 1
+ACTUAL EXIT: 1
+STDOUT:
+{"valid": false, "status": "KEY_NOT_TRUSTED", "message": "key is not trusted for this package and profile", "algorithm": "ed25519", "keyid": "0e990b6fdc0d092ce938dea86c89a009774ecb6cae4dc6431f3b94a2c6b548f7", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: KEY_NOT_TRUSTED
+PASS U12: KEY_NOT_TRUSTED, exit 1
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U13\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U13\release.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U13\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U13: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\release-1.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\release-1.json (keyid 3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\release-1.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U14-rsa-pss-sha256-1: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\rsa-pss-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\release-2.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\release-2.json (keyid 3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\release-2.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-rsa-pss-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "rsa-pss-sha256", "keyid": "3ddfc391ca48fcbad89ecc336ab7bc4e71939dc626fd2f7f0df186afb2dc45b0", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U14-rsa-pss-sha256-2: OK, exit 0
+U14 rsa-pss-sha256: identical manifest bytes; signatures different. RSA-PSS uses a fresh random 32-byte salt; signatures normally differ.
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\release-1.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\release-1.json (keyid d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\release-1.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U14-ecdsa-p256-sha256-1: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ecdsa-p256-sha256\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\release-2.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\release-2.json (keyid d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\release-2.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ecdsa-p256-sha256\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U14-ecdsa-p256-sha256-2: OK, exit 0
+U14 ecdsa-p256-sha256: identical manifest bytes; signatures different. This signer uses ECDSA with random nonces; signatures normally differ.
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\release-1.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\release-1.json (keyid 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\release-1.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U14-ed25519-1: OK, exit 0
+
+COMMAND: xaleidscopix sign --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\sample.bin --package demo --version 1.0.0 --key D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\ed25519\test-publisher.key.pem --out D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\release-2.json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+signed sample.bin -> D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\release-2.json (keyid 7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d)
+STDERR:
+
+
+COMMAND: xaleidscopix verify --file D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\sample.bin --bundle D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\release-2.json --trust-store D:\Skool\sem 7\Crypto3\tubes-3-if4020\tests\results\U01_U14\20261115-223118-786842\U14-ed25519\trust.json --package demo --version 1.0.0 --json
+EXPECTED EXIT: 0
+ACTUAL EXIT: 0
+STDOUT:
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "7ad8ae0ca75a4e6fe575b931c84eb089160b5e8a31ca8217b2ea0638f6b3ac0d", "package": "demo", "version": "1.0.0"}
+STDERR:
+
+EXPECTED STATUS: OK
+PASS U14-ed25519-2: OK, exit 0
+U14 ed25519: identical manifest bytes; signatures identical. Ed25519 is deterministic; the same key and message produce identical signatures.
+
+All 32 verification cases and 3 signature comparisons passed.

@@ -1,0 +1,1 @@
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ecdsa-p256-sha256", "keyid": "d470d699854480fe95306d55030987e3eab07f069a1807378d18f5e7f1cb1f9d", "package": "demo", "version": "1.0.0"}
