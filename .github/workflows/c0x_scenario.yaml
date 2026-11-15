@@ -98,7 +98,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C03-empty test
+          name: C03 empty test
           path: out/
 
   c03_other_package:
@@ -138,7 +138,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C03-other-package test
+          name: C03 other package test
           path: out/
 
   c03_swapped_key:
@@ -178,7 +178,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C03-swapped-key test
+          name: C03 false key test
           path: out/
 
   c04:
