@@ -8,6 +8,14 @@ The tool is shipped as a container image on GitHub Container Registry and is use
 
 The artifact released by the pipeline is built from `app/`, a fork of [Zig](https://github.com/ziglang/zig) latest commit before migrating, with its upstream history squashed into a single commit, which explains the contributor count of this repository.
 
+## Releases
+
+| Program version | Repository tag | Commit | Image tag | Image digest |
+|---|---|---|---|---|
+| 0.1.0 | `v0.1.0` | `f345aa3` | `ghcr.io/19623248git/tubes-3-if4020:v0.1.0` | `sha256:332d9c180eeef05ac739c75d44bf5abc4579f0aeb6dd50df5732754f3f5fab0e` |
+
+The image is public at [ghcr.io/19623248git/tubes-3-if4020](https://github.com/19623248Git/tubes-3-if4020/pkgs/container/tubes-3-if4020). A release image is built by `push_image.yaml` from the commit its repository tag points to, and `ci/push_image.sh` refuses to build it unless the tag matches the version in `signer/pyproject.toml`. Workflows pin the image by digest, so the digest decides which image runs, while trust in the publisher's keys still comes only from the trust store.
+
 ## Repository layout
 
 ```
@@ -110,7 +118,7 @@ Private keys live only in GitHub Actions secrets:
 
 ### Trust store
 
-`ci/trust.json` is prepared manuially and committed to the repository. The pipeline only reads it, it is never generated or updated from a bundle.
+`ci/trust.json` is prepared manually and committed to the repository. The pipeline only reads it, it is never generated or updated from a bundle.
 
 ### One time key setup
 
@@ -327,15 +335,51 @@ gh workflow run c0x_scenario.yaml
 }
 ```
 
-### Algorithm profiles and library API
+## Cryptography library
 
-All three profiles use cryptography 50.0.2. Keys and RSA PSS salts come from the operating system's secure random source through the library. ECDSA uses random nonces.
+All three signature profiles are implemented with [cryptography](https://cryptography.io/en/latest/) 50.0.2, pinned in `signer/uv.lock`. SHA-256 for artifacts and keyids comes from [hashlib](https://docs.python.org/3/library/hashlib.html) in the Python standard library. The manifest, bundle and trust store handling, the input checks, and the signing and verification flow are written in this repository, not handed off to another signing tool.
+
+### Parameters
+
+| Profile | Key | Signature scheme | Hash |
+|---|---|---|---|
+| `rsa-pss-sha256` | RSA, 3072 bit modulus, public exponent 65537 | PSS padding, MGF1 with SHA-256, 32 byte salt | SHA-256 |
+| `ecdsa-p256-sha256` | ECDSA on P-256, also called secp256r1 | ECDSA with a random nonce, signature stored as raw `r‖s`, each 32 bytes big endian | SHA-256 |
+| `ed25519` | Ed25519, RFC 8032 | pure Ed25519, no prehash | SHA-512 inside Ed25519 |
+
+Key generation, PSS salts and ECDSA nonces use the secure random generator inside the library, which is seeded by the operating system, and no fixed seed is ever used. Because of the random salt and nonce, signing the same manifest twice gives two different RSA PSS or ECDSA signatures, while Ed25519 is deterministic and gives the same signature both times.
+
+### Library API per profile
 
 | Profile | Key generation | Sign and verify | Signature bytes |
 |---|---|---|---|
 | `rsa-pss-sha256` | `rsa.generate_private_key(public_exponent=65537, key_size=3072)` | `padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=32)` with `hashes.SHA256()` | 384 bytes |
 | `ecdsa-p256-sha256` | `ec.generate_private_key(ec.SECP256R1())` | `ec.ECDSA(hashes.SHA256())`, the DER signature is converted to raw `r‖s` with `decode_dss_signature` and back with `encode_dss_signature` | 64 bytes, `r‖s` |
 | `ed25519` | `ed25519.Ed25519PrivateKey.generate()` | `sign(manifest)` and `verify(signature, manifest)`, pure Ed25519 | 64 bytes |
+
+### Other library calls
+
+| Task | Call |
+|---|---|
+| Write a private key | `private_bytes(Encoding.PEM, PrivateFormat.PKCS8, NoEncryption())` |
+| Write a public key | `public_bytes(Encoding.PEM, PublicFormat.SubjectPublicKeyInfo)` |
+| Read a private key | `serialization.load_pem_private_key(data, password=None)` |
+| Read a public key from the trust store | strict Base64 decode of the PEM body, then `serialization.load_der_public_key(der)` |
+| keyid | `public_bytes(Encoding.DER, PublicFormat.SubjectPublicKeyInfo)`, then `hashlib.sha256(der).hexdigest()` |
+| Artifact hash | `hashlib.file_digest(file, "sha256")` |
+| Profile check | `key_size` and `public_numbers().e` for RSA, `curve` being `ec.SECP256R1` for ECDSA, the key type for Ed25519 |
+| Rejected signature | `cryptography.exceptions.InvalidSignature` |
+
+### Documentation
+
+- [cryptography](https://cryptography.io/en/latest/)
+- [RSA](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/rsa/)
+- [Elliptic curve](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ec/)
+- [Ed25519](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/ed25519/)
+- [Key serialization](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/serialization/)
+- [Asymmetric utilities](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/utils/)
+- [Exceptions](https://cryptography.io/en/latest/exceptions/)
+- [Python hashlib](https://docs.python.org/3/library/hashlib.html)
 
 ## Running outside a CI/CD runner
 
