@@ -14,9 +14,9 @@ permissions:
   contents: read
 
 env:
-  IMAGE: ghcr.io/19623248git/tubes-3-if4020@sha256:5678dc0d02284bd24e9507e03fe43e86969bf9e938fa11020aa5cb0d92a70b2a
+  IMAGE: ghcr.io/19623248git/tubes-3-if4020@sha256:332d9c180eeef05ac739c75d44bf5abc4579f0aeb6dd50df5732754f3f5fab0e
   PACKAGE: zig-fork-app
-  VERSION: 1.0.0
+  VERSION: 0.1.0
 
 jobs:
   build:
