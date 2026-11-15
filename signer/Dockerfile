@@ -11,7 +11,6 @@ COPY pyproject.toml uv.lock README.md ./
 COPY src/ ./src/
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-dev --no-editable
-RUN uv sync --locked --no-dev --no-editable
 
 # run via entrypoint like in docs
 # https://docs.astral.sh/uv/guides/integration/docker/#non-editable-installs
