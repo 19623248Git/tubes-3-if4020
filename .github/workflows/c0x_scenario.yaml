@@ -54,11 +54,11 @@ jobs:
       - name: marker shouldn't exist
         run: sh ci/c0x_scenario/check_no_marker.sh
 
-      - name: upload evidence
+      - name: upload  test
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C02-evidence
+          name: C02 test
           path: out/
 
   c03_empty:
@@ -94,11 +94,11 @@ jobs:
       - name: marker shouldn't exist
         run: sh ci/c0x_scenario/check_no_marker.sh
 
-      - name: upload evidence
+      - name: upload  test
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C03-empty-evidence
+          name: C03-empty test
           path: out/
 
   c03_other_package:
@@ -134,11 +134,11 @@ jobs:
       - name: marker shouldn't exist
         run: sh ci/c0x_scenario/check_no_marker.sh
 
-      - name: upload evidence
+      - name: upload  test
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C03-other-package-evidence
+          name: C03-other-package test
           path: out/
 
   c03_swapped_key:
@@ -174,11 +174,11 @@ jobs:
       - name: marker shouldn't exist
         run: sh ci/c0x_scenario/check_no_marker.sh
 
-      - name: upload evidence
+      - name: upload  test
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C03-swapped-key-evidence
+          name: C03-swapped-key test
           path: out/
 
   c04:
@@ -214,11 +214,11 @@ jobs:
       - name: marker shouldn't exist
         run: sh ci/c0x_scenario/check_no_marker.sh
 
-      - name: upload evidence
+      - name: upload  test
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C04-evidence
+          name: C04 test
           path: out/
 
   c05:
@@ -261,9 +261,9 @@ jobs:
           echo "out/rilis.json owner $got, runner $want"
           [ "$got" = "$want" ]
 
-      - name: upload evidence
+      - name: upload  test
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: C05-evidence
+          name: C05 test
           path: out/
