@@ -6,6 +6,7 @@ on:
     paths:
       - "app/**"
       - "ci/**"
+      - "!ci/c0x_scenario/**"
       - "!ci/push-image.sh"
       - ".github/workflows/ci_app.yaml"
   workflow_dispatch:
