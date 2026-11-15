@@ -1,5 +1,7 @@
-#Run: uv run --project signer --locked python tests/test_u01_u03.py
+# Run: uv run --project signer --locked python tests/test.py
 
+import base64
+from datetime import datetime
 import json
 import os
 from pathlib import Path
@@ -12,8 +14,8 @@ import cryptography
 
 root = Path(__file__).resolve().parents[1]
 fixtures = root / "tests/test_cases"
-output = root / "tests/results/U01_U03"
-output.mkdir(parents=True, exist_ok=True)
+output = root / "tests/results/U01_U09" / datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+output.mkdir(parents=True)
 env = dict(os.environ, PYTHONPATH=str(root / "signer/src"), PYTHONDONTWRITEBYTECODE="1")
 cli = [sys.executable, "-B", "-m", "signer.xaleidscopix"]
 
@@ -26,14 +28,14 @@ def run(*arguments, expected_code=0):
     log.write(f"STDOUT:\n{result.stdout}STDERR:\n{result.stderr}\n")
     log.flush()
     if result.returncode != expected_code:
-        raise AssertionError(f"expected exit {expected_code}, got {result.returncode}; see {log.name}")
+        raise AssertionError(f"expected exit {expected_code}, got {result.returncode}: {result.stderr.strip()}; see {log.name}")
     return result.stdout
 
 
-def check(label, artifact, bundle, store, expected_status):
+def check(label, artifact, bundle, store, expected_status, version="1.0.0"):
     code = 0 if expected_status == "OK" else 1
     text = run("verify", "--file", artifact, "--bundle", bundle, "--trust-store", store,
-               "--package", "demo", "--version", "1.0.0", "--json", expected_code=code)
+               "--package", "demo", "--version", version, "--json", expected_code=code)
     (artifact.parent / f"{label}.verification.json").write_text(text, encoding="utf-8")
     result = json.loads(text)
     if result["status"] != expected_status or result["valid"] is not (code == 0):
@@ -86,6 +88,60 @@ with (output / "results.txt").open("w", encoding="utf-8") as log:
         artifact.write_bytes(data)
         check(label, artifact, bundle, store, "ARTIFACT_MISMATCH")
 
-    log.write("\nAll 12 verification cases passed.\n")
+    # U04-U09: each case gets unchanged copies of the valid Ed25519 release.
+    for label, status in (
+        ("U04", "INVALID_SIGNATURE"),
+        ("U05", "INVALID_SIGNATURE"),
+        ("U06-empty", "KEY_NOT_TRUSTED"),
+        ("U06-removed", "KEY_NOT_TRUSTED"),
+        ("U07", "KEY_NOT_TRUSTED"),
+        ("U08", "METADATA_MISMATCH"),
+        ("U09", "METADATA_MISMATCH"),
+    ):
+        case = output / label
+        case.mkdir(exist_ok=True)
+        artifact = case / "sample.bin"
+        artifact.write_bytes(original)
+        case_bundle = case / "release.json"
+        case_bundle.write_bytes(bundle.read_bytes())
+        case_store = case / "trust.json"
+        case_store.write_bytes(store.read_bytes())
+        version = "1.0.0"
 
-print(f"All 12 cases passed. Results: {output / 'results.txt'}")
+        if label == "U04":
+            contents = json.loads(case_bundle.read_bytes())
+            manifest = json.loads(base64.b64decode(contents["manifest_b64"]))
+            manifest["version"] = "2.0.0"
+            changed = json.dumps(manifest, separators=(",", ":")).encode("utf-8")
+            contents["manifest_b64"] = base64.b64encode(changed).decode("ascii")
+            case_bundle.write_text(json.dumps(contents), encoding="utf-8")
+        elif label == "U05":
+            contents = json.loads(case_bundle.read_bytes())
+            signature = base64.b64decode(contents["signature_b64"])
+            changed = bytes([signature[0] ^ 1]) + signature[1:]
+            contents["signature_b64"] = base64.b64encode(changed).decode("ascii")
+            case_bundle.write_text(json.dumps(contents), encoding="utf-8")
+        elif label == "U06-empty":
+            contents = json.loads(case_store.read_bytes())
+            contents["keys"] = []
+            case_store.write_text(json.dumps(contents), encoding="utf-8")
+        elif label == "U06-removed":
+            contents = json.loads(case_store.read_bytes())
+            keyid = contents["keys"][0]["keyid"]
+            run("trust", "remove", "--keyid", keyid, "--store", case_store)
+        elif label == "U07":
+            contents = json.loads(case_store.read_bytes())
+            contents["keys"][0]["packages"] = ["other-app"]
+            case_store.write_text(json.dumps(contents), encoding="utf-8")
+        elif label == "U08":
+            version = "2.0.0"
+        elif label == "U09":
+            artifact = case / "renamed.bin"
+            artifact.write_bytes(original)
+            (case / "sample.bin").unlink()
+
+        check(label, artifact, case_bundle, case_store, status, version=version)
+
+    log.write("\nAll 19 verification cases passed.\n")
+
+print(f"All 19 cases passed. Results: {output / 'results.txt'}")
