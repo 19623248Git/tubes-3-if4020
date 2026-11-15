@@ -7,7 +7,7 @@ RESULT="${RESULT:-out/verification.json}"
 export RESULT
 
 code=0
-sh "$(dirname "$0")/verify.sh" || code=$?
+sh "$(dirname "$0")/../verify.sh" || code=$?
 
 if [ -n "${GITHUB_OUTPUT:-}" ]; then
   echo "verify_exit=$code" >> "$GITHUB_OUTPUT"
