@@ -7,7 +7,7 @@ on:
       - "app/**"
       - "ci/**"
       - "!ci/c0x_scenario/**"
-      - "!ci/push-image.sh"
+      - "!ci/push_image.sh"
       - ".github/workflows/ci_app.yaml"
   workflow_dispatch:
 
