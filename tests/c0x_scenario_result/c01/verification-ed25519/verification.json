@@ -1,0 +1,1 @@
+{"valid": true, "status": "OK", "message": "signature and artifact are valid", "algorithm": "ed25519", "keyid": "3b0193088d56beff5dfb97b48fec407785e2e67924510ee98f583f24b052f8d2", "package": "zig-fork-app", "version": "0.1.0"}
